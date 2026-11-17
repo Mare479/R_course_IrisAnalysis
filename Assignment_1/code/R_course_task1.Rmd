@@ -16,14 +16,27 @@ install.packages("tidyverse") #instal packages to new project
 install.packages("renv")
 library(renv)
 library(tidyverse)
+library(dplyr)
+install.packages("ggpubr")
+library(ggpubr)
+renv::install("tibble")
+library(tibble)
+```
+
+```{r inspect iris}
+data(iris)
+head(iris)           
+str(iris)            #Species is a factor
+summary(iris)       
+dim(iris)            
+names(iris)          
+
+df <- as_tibble(iris) #convert to tibble df
+df
 ```
 
 ```{r}
-data(iris)
 
-install.packages("ggpubr")
-library(ggpubr)
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width))+ geom_point() + geom_smooth()
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point() + geom_smooth()
 ```
+
 
