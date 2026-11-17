@@ -4,25 +4,29 @@ author: "Marina"
 date: "2026-11-16"
 output: html_document
 ---
-
+####Setup run in console; code shown for educational purposes
 ```{r setup, include=FALSE}
-list.files(all.files = TRUE)
-renv::initi() 
-renv::status() #see all packages in lockfile
-renv::activate() #activating renv
-renv::snapshot() #take a snapshot of your renv
-renv::restore() #restore renv 
-install.packages("tidyverse") #instal packages to new project
-install.packages("renv")
-library(renv)
-library(tidyverse)
-library(dplyr)
-install.packages("ggpubr")
-library(ggpubr)
-renv::install("tibble")
-library(tibble)
+#list.files(all.files = TRUE)
+#renv::init() 
+#renv::status() #see all packages in lockfile
+#renv::snapshot() #take a snapshot of your renv
+#renv::restore() #restore renv 
+#install.packages("tidyverse") #instal packages to new project
+#install.packages("renv")
+#install.packages("ggpubr")
+#renv::install("tibble")
 ```
 
+####Call my libraries
+```{r library}
+library(tibble)
+library(ggpubr)
+library(dplyr)
+library(renv)
+library(tidyverse)
+```
+
+####Inspect dataset
 ```{r inspect iris}
 data(iris)
 head(iris)           
@@ -35,6 +39,8 @@ df <- as_tibble(iris) #convert to tibble df
 df
 ```
 
+
+####Make ggplots
 ```{r visualization w ggplot2}
 #Scatter plot
 p_scatter <- ggplot(data = df, aes(x = Sepal.Length, y = Sepal.Width)) +
@@ -86,6 +92,8 @@ p_facet
 ggsave("../figures/facet_sepal.png", p_facet, width = 8, height = 4, dpi = 300)
 ```
 
+
+####Manipulating plots
 ```{r customize plots}
 #Change color, font
 p_width_lenght <- ggplot(df, aes(x = Petal.Length, y = Petal.Width, color = Species)) +
@@ -105,7 +113,7 @@ p_width_lenght <- ggplot(df, aes(x = Petal.Length, y = Petal.Width, color = Spec
     legend.position = "bottom"
   )
 p_width_lenght
-ggsave("../figures/custom_petal.png", p_custom, width = 6, height = 4.5, dpi = 300)
+ggsave("../figures/p_width_lenght.png", p_width_lenght, width = 6, height = 4.5, dpi = 300)
 
 #Use ggpubr
 p_pub <- ggboxplot(
@@ -137,4 +145,6 @@ ggsave("../figures/ggpubr_scatter_cor.png", p_cor, width = 6, height = 4.5, dpi 
 renv::snapshot
 sessionInfo()
 ```
+
+
 
