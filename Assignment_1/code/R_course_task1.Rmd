@@ -35,8 +35,55 @@ df <- as_tibble(iris) #convert to tibble df
 df
 ```
 
-```{r}
+```{r visualization w ggplot2}
+#Scatter plot
+p_scatter <- ggplot(data = df, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point(aes(color = Species, shape = Species)) +
+  xlab("Sepal Length") +
+  ylab("Sepal Width") +
+  ggtitle("Sepal Length-Width")
+p_scatter
+ggsave("../figures/scatter_sepal.png",p_scatter,
+  width = 6,
+  height = 4,
+  dpi = 300)
 
+#Box plot 
+p_box <- ggplot(data = df, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot(aes(fill = Species)) +
+  ylab("Sepal Length") +
+  ggtitle("Iris Boxplot") +
+  stat_summary(fun = mean, geom = "point", shape = 5, size = 4)
+p_box
+ggsave("../figures/boxplot_sepal_length.png", p_box, width = 6, height = 4, dpi = 300)
+
+#Histogram
+p_hist <- ggplot(data = df, aes(x = Sepal.Width)) +
+  geom_histogram(binwidth = 0.2, color = "black", aes(fill = Species)) +
+  xlab("Sepal Width") +
+  ylab("Frequency") +
+  ggtitle("Histogram of Sepal Width")
+p_hist
+ggsave("../figures/histogram_sepal_width.png", p_hist, width = 6, height = 4, dpi = 300)
+
+#Bar plot
+p_bar <- ggplot(data = df, aes(x = Species)) +
+  geom_bar(aes(fill = Species)) +
+  xlab("Species") +
+  ylab("Count") +
+  ggtitle("Number of flowers per species")
+p_bar
+ggsave("../figures/barplot_species.png", p_bar, width = 6, height = 4, dpi = 300)
+
+#Facet one panel per species
+p_facet <- ggplot(data = df, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(aes(shape = Species), size = 1.5) +
+  xlab("Sepal Length") +
+  ylab("Sepal Width") +
+  ggtitle("Faceting") +
+  facet_grid(. ~ Species)
+p_facet
+ggsave("../figures/facet_sepal.png", p_facet, width = 8, height = 4, dpi = 300)
 ```
 
 
