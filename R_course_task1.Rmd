@@ -6,9 +6,26 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+list.files(all.files = TRUE)
+renv::initi() 
+renv::status() #see all packages in lockfile
+renv::activate() #activating renv
+renv::snapshot() #take a snapshot of your renv
+renv::restore() #restore renv 
+install.packages("tidyverse") #instal packages to new project
+install.packages("renv")
 library(renv)
-install.packages("tidyverse")
 library(tidyverse)
-renv::snapshot()
+```
+
+```{r}
+data(iris)
+
+install.packages("ggpubr")
+library(ggpubr)
+ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width))+ geom_point() + geom_smooth()
+ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point() + geom_smooth()
+
+
 ```
 
