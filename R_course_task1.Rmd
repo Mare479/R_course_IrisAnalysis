@@ -1,0 +1,14 @@
+---
+title: "261116_R_course_task1"
+author: "Marina"
+date: "2026-11-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(renv)
+install.packages("tidyverse")
+library(tidyverse)
+renv::snapshot()
+```
+
